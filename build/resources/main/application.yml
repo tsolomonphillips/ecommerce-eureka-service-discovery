@@ -1,0 +1,48 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+
+
+management:
+#  server:
+#    port: 8091
+
+  endpoints:
+    health:
+      show-details: "ALWAYS"
+    web:
+      exposure:
+        include: "*"
+
+
+---
+
+spring:
+  profiles: host1
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: host1
+  client:
+    serviceUrl:
+      defaultZone: http://host2:8762/eureka/
+
+
+---
+
+spring:
+  profiles: host2
+server:
+  port: 8762
+eureka:
+  instance:
+    hostname: host2
+  client:
+    serviceUrl:
+      defaultZone: http://host1:8761/eureka/
