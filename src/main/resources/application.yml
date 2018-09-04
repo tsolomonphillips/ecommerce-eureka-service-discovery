@@ -9,12 +9,10 @@ eureka:
 
 
 management:
-#  server:
-#    port: 8091
-
-  endpoints:
+  endpoint:
     health:
       show-details: "ALWAYS"
+  endpoints:
     web:
       exposure:
         include: "*"
@@ -32,6 +30,9 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://host2:8762/eureka/
+management:
+  server:
+    port: 8091
 
 
 ---
@@ -46,3 +47,6 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://host1:8761/eureka/
+management:
+  server:
+    port: 8092
